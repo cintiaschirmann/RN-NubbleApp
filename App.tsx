@@ -6,25 +6,24 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {Text} from './src/components/Text/Text';
-import {Button} from './src/components/Button/Button';
+
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from './src/theme/theme';
+import {EyeOffIcon} from './src/assets/icons/EyeOffIcon';
 
 function App(): React.JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaView>
-        <Text bold preset="headingLarge">
-          CoffStack
-        </Text>
+        <View style={{paddingHorizontal: 24}}>
+          <Text bold preset="headingLarge">
+            CoffStack
+          </Text>
 
-        <Button title="Primary" marginBottom="s12" />
-        <Button disable title="Primary" marginBottom="s12" />
-        <Button preset="outline" title="Outline" marginBottom="s12" />
-
-        <Button disabled preset="outline" title="loading" />
+          <EyeOffIcon />
+        </View>
       </SafeAreaView>
     </ThemeProvider>
   );
