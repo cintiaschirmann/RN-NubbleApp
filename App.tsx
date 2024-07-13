@@ -6,26 +6,23 @@
  */
 
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
-import {Text} from './src/components/Text/Text';
 
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from './src/theme/theme';
-import {EyeOffIcon} from './src/assets/icons/EyeOffIcon';
+import {LoginScreen} from './src/screens/auth/LoginScreen/LoginScreen';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SignUpScreen} from './src/screens/auth/SignUpScreen/SignUpScreen';
+import {PasswordInput} from './src/PasswordInput/PasswordInput';
 
-function App(): React.JSX.Element {
+function App(): JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaView>
-        <View style={{paddingHorizontal: 24}}>
-          <Text bold preset="headingLarge">
-            CoffStack
-          </Text>
-
-          <EyeOffIcon />
-        </View>
-      </SafeAreaView>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        {/* <LoginScreen /> */}
+        <SignUpScreen />
+        {/* <PasswordInput /> */}
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
