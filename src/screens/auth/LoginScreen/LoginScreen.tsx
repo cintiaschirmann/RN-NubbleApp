@@ -2,40 +2,57 @@ import React from 'react';
 
 import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
-import {Icon} from '../../../components/Icon/Icon';
 import {Button} from '../../../components/Button/Button';
 import {Screen} from '../../../components/Screen/Screen';
+import {PasswordInput} from '../../../PasswordInput/PasswordInput';
 
-export function LoginScreen() {
+import {NativeStackScreenProps} from 'react-native-screens/lib/typescript/native-stack/types';
+import {RootStackParamList} from '../../../routes/Routes';
+
+type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
+
+export function LoginScreen({navigation}: ScreenProps) {
+  function navigateToSignUpScreen() {
+    navigation.navigate('SignUpScreen');
+  }
+  function navigateToForgotPasswordScreen() {
+    navigation.navigate('ForgotPasswordScreen');
+  }
   return (
-    <Screen>
+    <Screen scrollable>
       <Text marginBottom="s8" preset="headingLarge">
         Olá
       </Text>
-      <Text preset="paragraphLarge" mb="s40">
+      <Text preset="paragraphLarge" mb="s10">
         Digite seu e-mail e senha para entrar
       </Text>
-
       <TextInput
-        label="Digite seu e-mail"
-        boxProps={{mb: 's20'}}
-        placeholder="Digite seu email"
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+        boxProps={{mb: 's8'}}
       />
-
-      <TextInput
-        errorMessage="Mensagem de erro"
-        label="Digite sua senha"
+      <PasswordInput
+        label="Senha"
         placeholder="Digite sua senha"
-        RightComponent={<Icon color="gray2" name="eyeOn" />}
+        errorMessage="mensagem de erro"
         boxProps={{mb: 's10'}}
       />
 
-      <Text color="primary" preset="paragraphSmall" bold>
+      <Text
+        onPress={navigateToForgotPasswordScreen}
+        color="primary"
+        preset="paragraphSmall"
+        bold>
         Esqueci minha senha
       </Text>
 
       <Button marginTop="s48" title="Entrar" />
-      <Button preset="outline" marginTop="s12" title="Criar uma conta" />
+      <Button
+        onPress={navigateToSignUpScreen}
+        preset="outline"
+        marginTop="s12"
+        title="Criar uma conta"
+      />
     </Screen>
   );
 }
